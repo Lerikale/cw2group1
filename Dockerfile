@@ -1,17 +1,8 @@
-# Use official Node.js LTS image as base
-FROM node:18-alpine
+FROM nginx:latest
 
-# Set working directory inside container
-WORKDIR /usr/src/app
+COPY index.html /usr/share/nginx/html
+COPY linux.png /usr/share/nginx/html
 
-# Copy application file(s) into container
-COPY server.js .
+EXPOSE 80 443
 
-# Expose application port
-EXPOSE 8081
-
-# Set environment variable (optional, Kubernetes will overwrite this)
-ENV HOSTNAME=devops-app
-
-# Command to run the app
-CMD ["node", "server.js"]
+CMD ["nginx", "-g", "daemon off;"]
