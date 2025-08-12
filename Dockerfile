@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY server.js .
 
 # Expose application port
-EXPOSE 80
+EXPOSE 8081
 
 # Set environment variable (optional, Kubernetes will overwrite this)
 ENV HOSTNAME=devops-app
