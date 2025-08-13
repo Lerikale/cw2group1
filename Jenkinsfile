@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     
-                    sh "docker run -d --name ${env.CONT_NAME} -p 8082:8080 $IMAGE_NAME:$IMAGE_TAG"
+                    sh "docker run -d --name ${env.CONT_NAME} -p 8081:8081 $IMAGE_NAME:$IMAGE_TAG"
                     sh "sleep 5"
                     sh "docker exec ${env.CONT_NAME} node -v"
                     sh "docker rm -f ${env.CONT_NAME}"
