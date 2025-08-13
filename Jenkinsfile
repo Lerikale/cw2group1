@@ -31,7 +31,7 @@ pipeline {
         stage('Test Container') {
             steps {
                 script {
-                
+                    sh "docker rm -f ${env.CONT_NAME}"
                     sh "docker run -d --name ${env.CONT_NAME} -p 8082:8080 $IMAGE_NAME:$IMAGE_TAG"
                     sh "sleep 5"
                     sh "docker exec ${env.CONT_NAME} curl -f http://localhost:8082 || exit 1"
