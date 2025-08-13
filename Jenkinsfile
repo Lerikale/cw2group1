@@ -1,4 +1,4 @@
-epipeline {
+pipeline {
     agent any
     
     environment {
