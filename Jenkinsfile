@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/gruop1cw2/cw2group1.git'
+                git branch: 'main', url: 'https://github.com/Lerikale/cw2group1.git'
             }
         }
 
