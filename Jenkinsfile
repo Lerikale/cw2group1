@@ -29,9 +29,9 @@ pipeline {
             steps {
                 script {
                     sh "docker rm -f cw-test-container"
-                    sh "docker run -d --name cw-test-container -p 8080:8080 $IMAGE_NAME:$IMAGE_TAG"
+                    sh "docker run -d --name cw-test-container -p 8082:8080 $IMAGE_NAME:$IMAGE_TAG"
                     sh "sleep 5"
-                    sh "docker exec cw-test-container curl -f http://localhost:8080 || exit 1"
+                    sh "docker exec cw-test-container curl -f http://localhost:8082 || exit 1"
                     
                 }
             }
