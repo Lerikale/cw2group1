@@ -1,4 +1,4 @@
-pipeline {
+epipeline {
     agent any
     
     environment {
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     sh "echo $DOCKERHUB_CREDS_PSW | docker login -u $DOCKERHUB_CREDS_USR --password-stdin"
-                    sh "docker push $IMAGE_NAME:$IMAGE_TAG"
+                    sh "docker push $IMAGE_NAME:$env.TAG"
                 }
             }
         }
@@ -55,7 +55,7 @@ pipeline {
                     sshagent([MINIKUBE_SSH_CRED]) {
                         sh """
                         ssh -o StrictHostKeyChecking=no $MINIKUBE_USER@$MINIKUBE_IP \\
-                        'kubectl set image deployment/cw2-server-deployment cw2-server=$IMAGE_NAME:$IMAGE_TAG --record'
+                        'kubectl set image deployment/cw2-server-deployment cw2-server=$IMAGE_NAME:$env.TAG --record'
                         """
                     }
                 }
