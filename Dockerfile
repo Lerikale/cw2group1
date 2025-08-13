@@ -1,8 +1,4 @@
-FROM nginx:latest
-
-COPY index.html /usr/share/nginx/html
-COPY linux.png /usr/share/nginx/html
-
-EXPOSE 80 443
-
-CMD ["nginx", "-g", "daemon off;"]
+FROM node:alpine
+EXPOSE 8080
+COPY server.js .
+CMD node server.js
