@@ -7,7 +7,7 @@ pipeline {
         IMAGE_TAG = "1.0"
         MINIKUBE_SSH_CRED = "minikube-ssh"        // SSH credentials ID in Jenkins
         MINIKUBE_USER = "ubuntu"                // Replace with Minikube SSH username
-        MINIKUBE_IP = "34.238.157.154"          // Replace with Minikube server IP
+        MINIKUBE_IP = "54.152.136.102"          // Replace with Minikube server IP
     }
 
     stages {
