@@ -14,6 +14,9 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Lerikale/cw2group1.git'
+                script {
+                    env.CONT_NAME = env.GIT_COMMIT.take(7)
+                }
             }
         }
 
@@ -28,10 +31,10 @@ pipeline {
         stage('Test Container') {
             steps {
                 script {
-                    sh "docker rm -f cw-test-container"
-                    sh "docker run -d --name cw-test-container -p 8082:8080 $IMAGE_NAME:$IMAGE_TAG"
+                
+                    sh "docker run -d --name ${env.CONT_NAME} -p 8082:8080 $IMAGE_NAME:$IMAGE_TAG"
                     sh "sleep 5"
-                    sh "docker exec cw-test-container curl -f http://localhost:8082 || exit 1"
+                    sh "docker exec ${env.CONT_NAME} curl -f http://localhost:8082 || exit 1"
                     
                 }
             }
