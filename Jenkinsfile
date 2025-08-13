@@ -15,7 +15,7 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/Lerikale/cw2group1.git'
                 script {
-                    env.CONT_NAME = env.GIT_COMMIT.take(7)
+                    env.TAG = env.GIT_COMMIT.take(7)
                 }
             }
         }
@@ -32,10 +32,10 @@ pipeline {
             steps {
                 script {
                     
-                    sh "docker run -d --name ${env.CONT_NAME} -p 8081:8081 $IMAGE_NAME:$IMAGE_TAG"
+                    sh "docker run -d --name ${env.TAG} -p 8081:8081 $IMAGE_NAME:$env.TAG"
                     sh "sleep 5"
-                    sh "docker exec ${env.CONT_NAME} node -v"
-                    sh "docker rm -f ${env.CONT_NAME}"
+                    sh "docker exec ${env.TAG} node -v"
+                    sh "docker rm -f ${env.TAG}"
                 }
             }
         }
